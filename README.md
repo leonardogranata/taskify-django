@@ -1,4 +1,4 @@
-# ✅ Taskfy - Gerenciador de Tarefas
+# 📋 Taskfy - Gerenciador de Tarefas
 
 Taskfy é uma aplicação web feita com Django focada no cadastro e visualização de tarefas.  
 Um HUB de produtividade para quem vive procrastinando.
