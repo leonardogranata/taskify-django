@@ -1,0 +1,25 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<div class="conteudo">
+    <div class="tarefa-detalhe">
+        <h1>Tarefa #{{ tarefa.id }}</h1>
+        <p><strong>Título:</strong> {{ tarefa.titulo }}</p>
+        <p><strong>Descrição:</strong> {{ tarefa.descricao }}</p>
+        {% if tarefa.status == 'P' %}
+            <p id='pendente'><strong>Status:</strong> {{ tarefa.status }}</p>
+        {% else %}
+            <p id='concluido'><strong>Status:</strong> {{ tarefa.status }}</p>
+        {% endif %}
+
+        <div class="btns">
+            <button id='btn-editar' onclick="window.location.href='{% url 'editarTarefa' tarefa.id %}'">Editar</button>
+            <button id='btn-excluir' onclick="window.location.href='{% url 'excluirTarefa' tarefa.id %}'">Excluir</button>
+        </div>
+
+        <br>
+        <a href="{% url 'listarTarefas' %}">← Voltar pra lista</a>
+    </div>
+</div>
+{% endblock %}

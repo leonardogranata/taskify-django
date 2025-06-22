@@ -1,0 +1,25 @@
+{% extends "core/base.html" %}
+{% load static %}  
+{% block content %}
+
+<main>
+    <div class="perfil-container">
+        <img src="{% static 'img/icon-user.png' %}" alt="Logo user">
+        <h1>{{ user.username }}</h1>
+        <ul>
+            <li><strong>Nome Completo:</strong> {{ user.first_name }} {{ user.last_name }}</li>
+            <li><strong>Email:</strong> {{ user.email }}</li>
+        </ul>
+
+        <div class="perfil-footer">
+            <a href="#" class='profile-btn'>Editar Perfil</a>
+            {% if user.is_superuser %}
+                <a href="#" class='profile-btn'>Área Administrativa</a>
+            {% endif %}
+        </div>
+        
+    </div>
+</main>
+
+
+{% endblock content %}

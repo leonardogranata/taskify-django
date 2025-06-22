@@ -1,0 +1,31 @@
+{% extends "core/base.html" %}
+{% block content %}
+<h1 id="titulo-listar">Lista de Tarefas cadastradas</h1>
+<div class="conteudo">
+    <table class="tabela-tarefas">
+        <thead>
+            <tr>
+                <th>ID:</th>
+                <th>Título:</th>
+                <th>Descrição:</th>
+                <th>Status:</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tarefa in tarefas %}
+            <tr>
+                <td><a href="{% url 'tarefaDetalhe' tarefa.id %}" id='id-tarefa'>{{ tarefa.id }}</a></td>
+                <td>{{ tarefa.titulo }}</td>
+                <td>{{ tarefa.descricao }}</td>
+                {% if tarefa.status == 'P' %}
+                    <td id="pendente">{{ tarefa.status }}</td>
+                {% else %}
+                    <td id="concluido">{{ tarefa.status }}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

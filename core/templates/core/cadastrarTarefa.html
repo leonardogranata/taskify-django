@@ -1,0 +1,20 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<main>
+    <div class="formulario">
+        <h1>Cadastrar Tarefa</h1>
+
+        <form method="POST" action="{% url 'cadastrarTarefa' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <br>
+            <button type="submit">Salvar Tarefa</button>
+        </form>
+    </div>
+</main>
+
+{% endblock content %}
+
+

@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<main>
+    <div class="formulario">
+        <h1>Confirmar Exclusão</h1> <br>
+        <p>Você tem certeza que quer excluir a tarefa: "{{ tarefa }}"?</p>
+
+        <form method="POST" action="{% url 'excluirTarefa' tarefa.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <div class="btns-excluir">
+                <a href="{% url 'tarefaDetalhe' tarefa.id %}">Cancelar</a>
+                <button type="submit">Excluir</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+{% endblock content %}
+

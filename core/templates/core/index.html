@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+
+
+
+{% block content %}
+
+<div class="container">
+    <div class="apresentacao-site">
+        {% if user.is_authenticated %}
+            <h1>Bem-vindo <span>{{ user.username }}</span> ao <span id='taskfy'>Taskify</span></h1>
+            <p>Seu HUB de cadastro de tarefas para melhor organização</p>
+        {% endif %}
+        <div class="btns">
+            <button onclick="window.location.href='{% url 'cadastrarTarefa' %}'">Cadastrar minha tarefa</button>
+            <button onclick="window.location.href='{% url 'listarTarefas' %}'">Ver minhas tarefas</button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+

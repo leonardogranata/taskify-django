@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Taskfy</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="{% url 'home' %}"><img src="{% static "img/logo_taksfy.png" %}" alt="Logo"></a>
+            <nav>
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'cadastrarTarefa' %}">Cadastrar tarefa</a>
+                <a href="{% url 'listarTarefas' %}">Ver tarefas</a>
+                {% if user.is_authenticated %}
+                    <!-- DROPDOWN DO USUÁRIO -->
+                <div class="user-dropdown">
+                    <a href="#" class="dropdown-toggle" id="userDropdown">
+                        <div class="user-avatar">👤</div>
+                        <span>{{ user.username }}</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <div class="user-info">
+                            <div class="user-name">{{ user.username }}</div>
+                            <div class="user-email">{{ user.email }}</div>
+                        </div>
+                        <a href="{% url 'profile' %}" class="dropdown-item">👤 Meu Perfil</a>
+                        <a href="{% url 'logout' %}" class="dropdown-item logout">🚪 Sair</a>
+                    </div>
+                </div>
+                {% else %}
+                    <button id="btn-login" onclick="window.location.href='{% url 'login' %}'">Login</button>
+                {% endif %}
+            </nav>
+        </header>
+
+        <div class="conteudo-principal">
+            {% block content %}
+            {% endblock content %}
+        </div> 
+        
+        <footer>
+            <div class="topicos-footer">
+                <a href="{% url 'home' %}">Home</a> |
+                <a href="{% url 'cadastrarTarefa' %}">Cadastrar tarefa</a> |
+                <a href="{% url 'listarTarefas' %}">Ver tarefas</a> |
+                <a href="{% url 'login' %}">Login</a>
+            </div>
+            <div class="direitos-footer">
+                <p>&copy; Todos os direitos reservados - Taskfy</p>
+            </div>
+            <div class="redes-sociais-footer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/2048px-Facebook_icon_2013.svg.png"
+                    alt="facebook">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2044px-WhatsApp.svg.png"
+                    alt="whatsapp">
+            </div>
+        </footer>
+    </div>
+
+    <script>
+         // Dropdown functionality
+        const dropdownToggle = document.getElementById('userDropdown');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Toggle dropdown
+            dropdownMenu.classList.toggle('show');
+            dropdownToggle.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+                dropdownToggle.classList.remove('active');
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>
